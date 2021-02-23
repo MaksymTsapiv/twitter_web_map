@@ -10,13 +10,6 @@ from fastapi import FastAPI
 
 
 
-# def input_keys():
-#     # consumer_key = 'IEbNhizj7mgN1VJsdZOhJTHmx'#input("Consumer_key: ")
-#     # consumer_secret = 'NXp7UqqY0dJxyIhb1tQNdlYp0Q9NE7nWe9LOWWVXczoCSGKS6z'#input("Consumer_secret: ")
-#     # access_token = '1362066443970445313-PbZn509eMRsHvI9tmQqmVdhKz0Eflq'#input("Access_token: ")
-#     # access_token_secret = 'cqZRhpZRLgbW86GmQ95WZvndoGKHxhi9SGZGZkHuJ1yI9'#input("Access_token_secret: ")
-#     name = 'elonmusk'#input("Name: ")
-#     return consumer_key, consumer_secret, access_token, access_token_secret, name
 
 
 def friends_name_loc(name):
