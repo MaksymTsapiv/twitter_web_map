@@ -8,9 +8,7 @@ from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 from fastapi import FastAPI
 
-auth = tweepy.OAuthHandler("IEbNhizj7mgN1VJsdZOhJTHmx", "NXp7UqqY0dJxyIhb1tQNdlYp0Q9NE7nWe9LOWWVXczoCSGKS6z")
-auth.set_access_token("1362066443970445313-PbZn509eMRsHvI9tmQqmVdhKz0Eflq", "cqZRhpZRLgbW86GmQ95WZvndoGKHxhi9SGZGZkHuJ1yI9")
-api = tweepy.API(auth)
+
 
 # def input_keys():
 #     # consumer_key = 'IEbNhizj7mgN1VJsdZOhJTHmx'#input("Consumer_key: ")
