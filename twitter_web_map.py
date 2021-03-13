@@ -1,16 +1,15 @@
 """twitter web map"""
 
-import pprint
-import codecs
+from os import path
 import tweepy
 import folium
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
-from fastapi import FastAPI
+from keys import KEY1, KEY2, KEY3, KEY4
 
-
-
-
+auth = tweepy.OAuthHandler(KEY1, KEY2)
+auth.set_access_token(KEY3, KEY4)
+api = tweepy.API(auth)
 
 def friends_name_loc(name):
     """
@@ -44,26 +43,14 @@ def map_generator(locations):
     map = folium.Map(location=[0, 0], zoom_start=3, tiles="Stamen Terrain")
     for name, coord in locations:
         folium.Marker([coord[0], coord[1]], popup=name).add_to(map)
-    map.save('templates/index.html')
+    map.save(path.join("templates", "index.html"))
     return map
 
-def main():
+def main(name):
     """
 
     :return:
     """
-    name = ''
+    # name = ''
     locations = list(friends_coordinates(friends_name_loc(name)))
     map_generator(locations)
-
-
-
-
-
-if __name__ == '__main__':
-    main()
-    # inp = input_keys()
-    # print(friend_names(inp[:-1], inp[-1]))
-    # print(friends_id(inp[:-1], inp[-1]))
-    # print(friend_location(inp[:-1], 44196397))
-    # print(list(friends_coordinates(map(lambda x: x[0], friends_name_loc('elonmusk')))))
