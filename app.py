@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, render_template_string
 from bs4 import BeautifulSoup
-from os import path
 from twitter_web_map import main
 
 app = Flask(__name__)
@@ -13,20 +12,19 @@ def data():
         return render_template('input.html')
     if request.method == 'POST':
         form_data = request.form
-        main(form_data.get("username"))
-        update(path.join("templates", "index.html"))
-        return render_template('index.html')
+        map_page = main(form_data.get("username"))
+        map_template = update(map_page)
+        return render_template_string(map_template)
 
 
-def update(filename):
-    with open(filename, encoding='utf8') as fp:
-        soup = BeautifulSoup(fp, "html.parser")
+def update(file):
+
+    soup = BeautifulSoup(file, "html.parser")
     extraSoup = BeautifulSoup(REFRESH_ICON)
     tag = soup.find("body")
     tag.insert(1, extraSoup)
-    with open(filename, "w", encoding='utf8') as fp:
-        fp.write(soup.prettify())
+    return soup.prettify()
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

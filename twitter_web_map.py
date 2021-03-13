@@ -5,6 +5,8 @@ import tweepy
 import folium
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
+from markupsafe import Markup
+
 from keys import KEY1, KEY2, KEY3, KEY4
 
 auth = tweepy.OAuthHandler(KEY1, KEY2)
@@ -43,8 +45,8 @@ def map_generator(locations):
     map = folium.Map(location=[0, 0], zoom_start=3, tiles="Stamen Terrain")
     for name, coord in locations:
         folium.Marker([coord[0], coord[1]], popup=name).add_to(map)
-    map.save(path.join("templates", "index.html"))
-    return map
+
+    return map.get_root().render()
 
 def main(name):
     """
@@ -53,4 +55,4 @@ def main(name):
     """
     # name = ''
     locations = list(friends_coordinates(friends_name_loc(name)))
-    map_generator(locations)
+    return map_generator(locations)
